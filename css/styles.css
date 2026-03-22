@@ -1,0 +1,401 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* 4. Increase line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+/* Reset over https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+
+:root{
+  --navy: #182044;
+  --coral: #F97577;
+  --coral-dark: #D24042;
+  --powder-blue: #6F779B;
+  --middle-grey:#C6C6CD;
+  --light-grey: #E2E2E5;
+  --off-white: #FAFAFB;
+  --system-ui: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --icon-fill-color: var(--powder-blue);
+}
+body{
+  background-color: var(--light-grey);
+  color: var(--navy);
+  font-family: var(--system-ui);
+  display: grid;
+  grid-template-columns: 255px 2fr min(30%, 400px);
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  grid-template-areas: 
+  "nav header header"
+  "nav main aside";
+}
+#main-navigation{
+  background-color: var(--navy);
+  color: var(--off-white);
+  grid-area: nav;
+  padding: 2rem;
+  height: 100vh;
+  position:fixed;
+  width: 255px;
+  display: grid;
+  grid-template-rows: auto 100px auto minmax( 20px, 1fr) auto ;
+  grid-template-areas: 
+  "logo"
+  "."
+  "navigation"
+  "."
+  "side-navigation"
+  ;
+}
+
+
+#logo{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  font-weight: 1000;
+  font-size: 1.75rem;
+  line-height: 1.75rem;
+  align-items: center;
+  grid-area: logo;
+}
+ul#navigation{
+  padding: 0;
+  margin: 0;
+  grid-area: navigation;
+}
+
+ul#side-navigation{
+  padding: 0;
+  margin: 0;
+  grid-area: side-navigation;
+}
+ul#side-navigation li{
+  font-size: 0.875rem;
+}
+#main-navigation li{
+  list-style: none;
+  display: flex;
+  gap: 0.7rem;
+  color: var(--powder-blue);
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+#main-navigation li:last-of-type{
+  margin-bottom: 0;
+}
+#main-navigation li:hover{
+  color: var(--off-white);
+  --icon-fill-color: var(--off-white);
+  cursor: pointer;
+}
+#main-navigation li[aria-current]{
+  color: var(--off-white);
+  --icon-fill-color: var(--coral);
+}
+#logo span span{
+  font-weight: 300;
+}
+#user-nav{
+  grid-area: header;
+  background-color: var(--off-white);
+  padding: 2rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto ;
+  gap: 1.5rem;
+  grid-template-areas: 
+  "search  user-menu"
+  "user-info  actions"
+  ;
+}
+#user-nav input{
+  background-color: var(--light-grey);
+  border: none;
+  border-radius: 20px;
+  height: 40px;
+  max-width: 350px;
+  width: 100%
+}
+#user-nav ul, .search{
+  display: flex;
+  margin: 0;
+  padding:0;
+  gap: 0.75rem;
+  align-items: center;
+  font-weight: 600;
+}
+#user-nav ul li{
+  list-style: none;
+}
+
+.search{
+  grid-area: search;
+}
+#user-menu{
+  grid-area: user-menu;
+  justify-content: flex-end;
+}
+#user-info{
+  grid-area: user-info;
+}
+.actions{
+  grid-area: actions;
+}
+.btn{
+  background-color: var(--coral);
+  color: var(--off-white);
+  padding: 0.5rem 1.5rem;
+  height: 40px;
+  border-radius: 20px;
+}
+.btn:hover{
+  cursor: pointer;
+  background-color: var(--coral-dark);
+}
+
+#user-menu img{
+  width: 30px;
+  height: 30px;
+}
+#user-info{
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  column-gap: 0.75rem;
+  grid-template-areas: 
+  "img hello"
+  "img usernam"
+  ;
+}
+#user-info img{
+  grid-area: img;
+  border-radius: 50%;
+}
+#user-info div{
+  align-self: flex-end;
+}
+#user-info h2{
+  font-weight: 1000;
+  font-size: 1.75rem;
+  line-height: 1.75rem;
+  align-self:start;
+}
+#user-info h2 span{
+  color: var(--powder-blue);
+}
+
+#my-projects{
+  grid-area: main;
+  padding: 2rem 1.5rem 3rem 3rem;
+}
+ul#projects{
+  margin: 1.5rem 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+}
+ul#projects > li{
+  margin: 0;
+  padding: 1.8rem 2rem 2.2rem;
+  list-style: none;
+  background-color: var(--off-white);
+  border-radius: 10px;
+  border-left: 6px solid var(--coral);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.8rem;
+  transition: transform 0.15s ease-in-out 0s, box-shadow  0.15s ease-in-out 0s;
+}
+ul.icons{
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  gap: 0.6rem;
+  justify-content: end;
+}
+ul.icons li{
+  list-style: none;
+}
+
+ul.icons li:hover{
+  --icon-fill-color: var(--coral);
+  cursor: pointer;
+}
+h3{
+  font-weight: 1000;
+}
+ul#projects h3:hover{
+  color: var(--coral);
+  cursor: pointer;
+}
+ul#projects > li:hover{
+  transform: translateY(-10px);
+  cursor: pointer;
+  box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.10), 0px 20px 25px -5px rgba(0, 0, 0, 0.10);
+}
+
+
+#side-info{
+  grid-area: aside;
+  padding: 2rem 3rem 3rem 1.5rem;
+
+}
+#side-info > div > ul{
+  background-color: var(--off-white);
+  border-radius: 10px;
+  margin: 1.5rem 0 3rem;
+  padding: 1rem 2rem;
+}
+#side-info > div > ul li{
+  border-bottom: 1px solid var(--light-grey);
+  list-style: none ;
+  padding: 1rem 0;
+  font-size: 0.75rem;
+}
+#side-info > div > ul li:hover{
+  color: var(--coral);
+  cursor: pointer;
+}
+#side-info > div > ul li:last-of-type{
+  border-bottom: none;
+}
+#side-info > div > ul li h3{
+  font-size: 0.75rem;
+}
+#side-info ul.user-list > li h3{
+  font-size: 0.875rem;
+}
+#side-info ul.user-list > li{
+  font-size: 0.875rem;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 0.7rem;
+  grid-template-areas: 
+  "image user"
+  "image info"
+  ;
+
+}
+#side-info ul.user-list > li img{
+  grid-area: image;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+#side-info ul.user-list > li h3{
+  grid-area: user;
+  align-self: end;
+}
+#side-info ul.user-list > li p{
+  grid-area: info;
+  align-self: start;
+}
+
+
+@media screen and (width <= 1024px) {
+  body{
+  grid-template-columns: 60px 2fr min(40%, 350px);;
+  }
+  #main-navigation{
+  width: 60px;
+  padding: 1rem;
+  }
+  #main-navigation span{
+    display: none;
+  }
+}
+
+@media screen and (width <= 840px) {
+  body{
+  grid-template-columns: 60px 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: 
+  "nav header"
+  "nav main"
+  "nav aside";
+  }
+  #main-navigation{
+  width: 60px;
+  padding: 1rem;
+  }
+  #main-navigation span{
+    display: none;
+  }
+  #side-info,
+  #my-projects{
+  padding: 2rem 2rem 3rem;
+}
+ul#projects{
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+#user-info{
+  display: none;
+}
+#user-nav{
+  padding: 1.5rem 2rem;
+
+  grid-template-areas: 
+  "search  user-menu"
+  "actions  actions"
+  ;
+}
+.actions{
+  justify-content: center;
+}
+#user-menu li:nth-child(2){
+  display: none;
+}
+}
